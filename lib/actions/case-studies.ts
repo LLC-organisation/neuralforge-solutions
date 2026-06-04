@@ -14,29 +14,12 @@ const caseStudySchema = z.object({
   published: z.boolean().default(false),
 });
 
-export async function createCaseStudy(formData: FormData) {
-  const raw = {
-    clientProblem: formData.get("clientProblem") as string,
-    solution: formData.get("solution") as string,
-    results: formData.get("results") as string,
-    industry: formData.get("industry") as string | undefined,
-    companySize: formData.get("companySize") as string | undefined,
-    published: formData.get("published") === "true",
-  };
+export type CaseStudyFormState = {
+  fieldErrors?: Partial<Record<"clientProblem" | "solution" | "results" | "industry" | "companySize" | "published", string[]>>;
+} | null;
 
-  const parsed = caseStudySchema.safeParse(raw);
-  if (!parsed.success) {
-    return { error: parsed.error.flatten() };
-  }
-
-  await prisma.caseStudy.create({ data: parsed.data });
-  revalidatePath("/admin/case-studies");
-  revalidatePath("/");
-  redirect("/admin/case-studies");
-}
-
-export async function updateCaseStudy(id: string, formData: FormData) {
-  const raw = {
+function parseFormData(formData: FormData) {
+  return {
     clientProblem: formData.get("clientProblem") as string,
     solution: formData.get("solution") as string,
     results: formData.get("results") as string,
@@ -44,12 +27,31 @@ export async function updateCaseStudy(id: string, formData: FormData) {
     companySize: (formData.get("companySize") as string) || undefined,
     published: formData.get("published") === "true",
   };
+}
 
-  const parsed = caseStudySchema.safeParse(raw);
+export async function createCaseStudy(
+  _prevState: CaseStudyFormState,
+  formData: FormData
+): Promise<CaseStudyFormState> {
+  const parsed = caseStudySchema.safeParse(parseFormData(formData));
   if (!parsed.success) {
-    return { error: parsed.error.flatten() };
+    return { fieldErrors: parsed.error.flatten().fieldErrors };
   }
+  await prisma.caseStudy.create({ data: parsed.data });
+  revalidatePath("/admin/case-studies");
+  revalidatePath("/");
+  redirect("/admin/case-studies");
+}
 
+export async function updateCaseStudy(
+  id: string,
+  _prevState: CaseStudyFormState,
+  formData: FormData
+): Promise<CaseStudyFormState> {
+  const parsed = caseStudySchema.safeParse(parseFormData(formData));
+  if (!parsed.success) {
+    return { fieldErrors: parsed.error.flatten().fieldErrors };
+  }
   await prisma.caseStudy.update({ where: { id }, data: parsed.data });
   revalidatePath("/admin/case-studies");
   revalidatePath("/");

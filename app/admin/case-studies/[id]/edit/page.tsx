@@ -1,10 +1,7 @@
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { updateCaseStudy } from "@/lib/actions/case-studies";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { CaseStudyForm } from "@/components/forms/case-study-form";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -27,80 +24,18 @@ export default async function EditCaseStudyPage({ params }: { params: Promise<{ 
 
       <h1 className="text-white text-2xl font-semibold mb-8">Edit Case Study</h1>
 
-      <form action={action} className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="clientProblem">Client Problem *</Label>
-          <Textarea
-            id="clientProblem"
-            name="clientProblem"
-            rows={4}
-            required
-            defaultValue={study.clientProblem}
-            className="resize-y"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="solution">Solution *</Label>
-          <Textarea
-            id="solution"
-            name="solution"
-            rows={4}
-            required
-            defaultValue={study.solution}
-            className="resize-y"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="results">Results *</Label>
-          <Textarea
-            id="results"
-            name="results"
-            rows={3}
-            required
-            defaultValue={study.results}
-            className="resize-y"
-          />
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="industry">Industry (optional)</Label>
-            <Input
-              id="industry"
-              name="industry"
-              placeholder="e.g. Healthcare"
-              defaultValue={study.industry ?? ""}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="companySize">Company Size (optional)</Label>
-            <Input
-              id="companySize"
-              name="companySize"
-              placeholder="e.g. 11-50"
-              defaultValue={study.companySize ?? ""}
-            />
-          </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <input
-            type="checkbox"
-            id="published"
-            name="published"
-            value="true"
-            defaultChecked={study.published}
-            className="accent-yellow-500 w-4 h-4"
-          />
-          <Label htmlFor="published" className="cursor-pointer">
-            Published (visible on the public site)
-          </Label>
-        </div>
-        <div className="flex gap-3">
-          <Button type="submit">Save Changes</Button>
-          <Link href="/admin/case-studies">
-            <Button type="button" variant="ghost">Cancel</Button>
-          </Link>
-        </div>
-      </form>
+      <CaseStudyForm
+        action={action}
+        defaultValues={{
+          clientProblem: study.clientProblem,
+          solution: study.solution,
+          results: study.results,
+          industry: study.industry,
+          companySize: study.companySize,
+          published: study.published,
+        }}
+        submitLabel="Save Changes"
+      />
     </div>
   );
 }
