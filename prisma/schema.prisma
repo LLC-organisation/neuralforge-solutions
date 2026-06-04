@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ConsultationRequest {
+  id                String   @id @default(cuid())
+  fullName          String
+  companyName       String
+  email             String
+  phone             String
+  industry          String
+  companySize       String
+  businessChallenge String
+  desiredOutcome    String
+  createdAt         DateTime @default(now())
+
+  @@map("consultation_requests")
+}
+
+model AutomationRequest {
+  id                     String   @id @default(cuid())
+  fullName               String
+  companyName            String
+  email                  String
+  phone                  String
+  industry               String
+  existingSystems        String
+  currentProcess         String
+  painPoints             String
+  desiredAutomation      String
+  estimatedMonthlyVolume String
+  createdAt              DateTime @default(now())
+
+  @@map("automation_requests")
+}
+
+model CaseStudy {
+  id            String   @id @default(cuid())
+  clientProblem String
+  solution      String
+  results       String
+  industry      String?
+  companySize   String?
+  published     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("case_studies")
+}
+
+model SiteSettings {
+  id        String   @id @default("singleton")
+  email     String?
+  whatsapp  String?
+  telegram  String?
+  linkedin  String?
+  instagram String?
+  twitter   String?
+  facebook  String?
+  updatedAt DateTime @updatedAt
+
+  @@map("site_settings")
+}
