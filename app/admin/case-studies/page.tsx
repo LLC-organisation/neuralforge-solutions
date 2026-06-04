@@ -1,8 +1,9 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
-import { Plus, Pencil, Trash2 } from "lucide-react";
-import { deleteCaseStudy, toggleCaseStudyPublished } from "@/lib/actions/case-studies";
+import { Plus, Pencil } from "lucide-react";
+import { toggleCaseStudyPublished } from "@/lib/actions/case-studies";
 import { Badge } from "@/components/ui/badge";
+import { DeleteCaseStudyButton } from "@/components/admin/delete-case-study-button";
 
 export default async function CaseStudiesAdminPage() {
   const caseStudies = await prisma.caseStudy.findMany({
@@ -77,20 +78,7 @@ export default async function CaseStudiesAdminPage() {
                 >
                   <Pencil size={15} />
                 </Link>
-                <form action={deleteCaseStudy.bind(null, study.id)}>
-                  <button
-                    type="submit"
-                    className="p-2 text-zinc-400 hover:text-red-400 hover:bg-zinc-800 rounded-md transition-colors"
-                    aria-label="Delete case study"
-                    onClick={(e) => {
-                      if (!confirm("Delete this case study? This cannot be undone.")) {
-                        e.preventDefault();
-                      }
-                    }}
-                  >
-                    <Trash2 size={15} />
-                  </button>
-                </form>
+                <DeleteCaseStudyButton id={study.id} />
               </div>
             </div>
           ))}
