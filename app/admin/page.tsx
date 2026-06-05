@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+﻿import prisma from "@/lib/prisma";
 import { Users, Bot, BookOpen, TrendingUp } from "lucide-react";
 import Link from "next/link";
 
@@ -51,10 +51,10 @@ export default async function AdminDashboardPage() {
           <Link
             key={label}
             href={href}
-            className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-yellow-500/50 transition-colors group"
+            className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-blue-500/50 transition-colors group"
           >
             <div className="flex items-center justify-between mb-4">
-              <Icon size={20} className="text-yellow-500" />
+              <Icon size={20} className="text-blue-500" />
             </div>
             <p className="text-3xl font-bold text-white mb-1">{value}</p>
             <p className="text-zinc-400 text-sm">{label}</p>
@@ -64,3 +64,4 @@ export default async function AdminDashboardPage() {
     </div>
   );
 }
+

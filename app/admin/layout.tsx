@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { logout } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Users, Bot, BookOpen, Settings, LogOut } from "lucide-react";
@@ -18,11 +18,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-64 bg-zinc-900 border-r border-zinc-800 flex flex-col">
         <div className="p-6 border-b border-zinc-800">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-md flex items-center justify-center">
-              <span className="text-black font-bold text-sm">B</span>
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-md flex items-center justify-center">
+              <span className="text-white font-bold text-sm">A</span>
             </div>
             <div>
-              <p className="text-white font-semibold text-sm">Biashara</p>
+              <p className="text-white font-semibold text-sm">Amek Technology</p>
               <p className="text-zinc-400 text-xs">Admin Panel</p>
             </div>
           </div>
@@ -62,3 +62,4 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     </div>
   );
 }
+

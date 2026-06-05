@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "motion/react";
 import {
@@ -30,14 +30,14 @@ function CapabilityItem({
     <motion.div
       className={cn(
         "group bg-zinc-900 border border-zinc-800 rounded-lg p-5",
-        "hover:border-yellow-500/50 transition-all duration-300 flex flex-col gap-3"
+        "hover:border-blue-500/50 transition-all duration-300 flex flex-col gap-3"
       )}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
     >
-      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
         <Icon size={18} className="text-black" />
       </div>
       <h3 className="text-white text-base font-semibold">{title}</h3>
@@ -104,7 +104,7 @@ export function CapabilitiesSection() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-white">What We Can Do For You</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
             A full spectrum of automation capabilities built for real business
             challenges.
@@ -121,3 +121,4 @@ export function CapabilitiesSection() {
     </section>
   );
 }
+

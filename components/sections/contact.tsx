@@ -31,9 +31,9 @@ function SocialLink({ href, icon, label }: SocialLinkProps) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-lg p-4 hover:border-yellow-500/50 hover:text-yellow-500 text-white/70 transition-all duration-300 group"
+      className="flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-lg p-4 hover:border-blue-500/50 hover:text-blue-400 text-white/70 transition-all duration-300 group"
     >
-      <span className="text-yellow-500 group-hover:scale-110 transition-transform">{icon}</span>
+      <span className="text-blue-400 group-hover:scale-110 transition-transform">{icon}</span>
       <span className="text-sm font-medium">{label}</span>
     </a>
   );

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -37,7 +37,7 @@ export function AutomationRequestForm() {
   if (submitted) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <CheckCircle className="text-yellow-500 mb-4" size={56} />
+        <CheckCircle className="text-blue-500 mb-4" size={56} />
         <h3 className="text-white text-2xl font-semibold mb-2">Request Received!</h3>
         <p className="text-white/70 max-w-md">
           Thank you for the detailed request. Our team will review your workflow and get back to you within 2 business days with a proposal.
@@ -134,3 +134,4 @@ export function AutomationRequestForm() {
     </form>
   );
 }
+

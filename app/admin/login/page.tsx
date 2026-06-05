@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { login } from "@/lib/actions/auth";
@@ -28,8 +28,8 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-black flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-lg flex items-center justify-center">
-            <Lock className="text-black" size={18} />
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
+            <Lock className="text-white" size={18} />
           </div>
           <span className="text-white font-semibold text-lg">Admin Access</span>
         </div>
@@ -72,3 +72,4 @@ export default function AdminLoginPage() {
     </div>
   );
 }
+

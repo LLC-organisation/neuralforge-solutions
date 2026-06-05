@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useActionState } from "react";
 import { Button } from "@/components/ui/button";
@@ -99,7 +99,7 @@ export function CaseStudyForm({ action, defaultValues, submitLabel = "Save" }: C
           name="published"
           value="true"
           defaultChecked={defaultValues?.published ?? false}
-          className="accent-yellow-500 w-4 h-4"
+          className="accent-blue-500 w-4 h-4"
         />
         <Label htmlFor="published" className="cursor-pointer">
           Published (visible on the public site)
@@ -119,3 +119,4 @@ export function CaseStudyForm({ action, defaultValues, submitLabel = "Save" }: C
     </form>
   );
 }
+

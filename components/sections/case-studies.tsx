@@ -31,7 +31,7 @@ export async function CaseStudiesSection() {
           {caseStudies.map((study) => (
             <article
               key={study.id}
-              className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col hover:border-yellow-500/30 transition-all duration-300"
+              className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col hover:border-blue-500/30 transition-all duration-300"
             >
               <div className="flex gap-2 mb-4 flex-wrap">
                 {study.industry && (
@@ -43,7 +43,7 @@ export async function CaseStudiesSection() {
               </div>
 
               <div className="mb-4">
-                <h4 className="text-yellow-500 text-xs uppercase tracking-widest mb-2 font-semibold">
+                <h4 className="text-blue-400 text-xs uppercase tracking-widest mb-2 font-semibold">
                   The Challenge
                 </h4>
                 <p className="text-white/80 text-sm leading-relaxed line-clamp-4">
@@ -52,7 +52,7 @@ export async function CaseStudiesSection() {
               </div>
 
               <div className="mb-4">
-                <h4 className="text-yellow-500 text-xs uppercase tracking-widest mb-2 font-semibold">
+                <h4 className="text-blue-400 text-xs uppercase tracking-widest mb-2 font-semibold">
                   Our Solution
                 </h4>
                 <p className="text-white/80 text-sm leading-relaxed line-clamp-4">
@@ -61,7 +61,7 @@ export async function CaseStudiesSection() {
               </div>
 
               <div className="mt-auto pt-4 border-t border-zinc-800">
-                <h4 className="text-yellow-500 text-xs uppercase tracking-widest mb-2 font-semibold">
+                <h4 className="text-blue-400 text-xs uppercase tracking-widest mb-2 font-semibold">
                   Results
                 </h4>
                 <p className="text-white font-medium text-sm leading-relaxed">

@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+﻿import prisma from "@/lib/prisma";
 import { Download } from "lucide-react";
 import Link from "next/link";
 
@@ -54,11 +54,11 @@ export default async function AutomationRequestsPage() {
               <div className="px-5 pb-5 border-t border-zinc-800 pt-4 space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <p className="text-yellow-500 text-xs uppercase tracking-widest mb-1">Email</p>
+                    <p className="text-blue-500 text-xs uppercase tracking-widest mb-1">Email</p>
                     <p className="text-white/80 text-sm">{row.email}</p>
                   </div>
                   <div>
-                    <p className="text-yellow-500 text-xs uppercase tracking-widest mb-1">Phone</p>
+                    <p className="text-blue-500 text-xs uppercase tracking-widest mb-1">Phone</p>
                     <p className="text-white/80 text-sm">{row.phone}</p>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ export default async function AutomationRequestsPage() {
                   ["Desired Automation", row.desiredAutomation],
                 ].map(([label, value]) => (
                   <div key={label}>
-                    <p className="text-yellow-500 text-xs uppercase tracking-widest mb-1">{label}</p>
+                    <p className="text-blue-500 text-xs uppercase tracking-widest mb-1">{label}</p>
                     <p className="text-white/80 text-sm leading-relaxed">{value}</p>
                   </div>
                 ))}
@@ -81,3 +81,4 @@ export default async function AutomationRequestsPage() {
     </div>
   );
 }
+
