@@ -13,28 +13,28 @@ interface Step {
 const steps: Step[] = [
   {
     number: 1,
-    title: "Tell us your challenge",
-    description: "Share the bottlenecks and repetitive tasks slowing your business down.",
+    title: "Tell us what's slowing you down",
+    description: "We start with a conversation — what tasks take too long, what keeps breaking, and where your team is spending time it shouldn't have to.",
   },
   {
     number: 2,
-    title: "We analyze your workflow",
-    description: "Our team maps your current processes and identifies the best automation opportunities.",
+    title: "We dig into your workflow",
+    description: "Our team maps out your current processes and identifies which ones are worth automating first. We look for quick wins alongside longer-term improvements.",
   },
   {
     number: 3,
-    title: "We design your solution",
-    description: "We build a custom automation blueprint tailored to your specific operations.",
+    title: "We design a solution for you",
+    description: "No templates. We build an automation plan specific to how your business actually works — then walk you through it before anything gets built.",
   },
   {
     number: 4,
-    title: "We implement & integrate",
-    description: "Our engineers deploy and test your automation, connecting seamlessly with your existing tools.",
+    title: "We build and connect everything",
+    description: "Our engineers build and test your automation, connect it to your existing tools, and make sure it works the way it should before handing it over.",
   },
   {
     number: 5,
-    title: "We support & optimize",
-    description: "We monitor performance and continuously improve your automations as your business evolves.",
+    title: "We stay with you after launch",
+    description: "Once everything is live, we monitor it, fix issues, and make improvements as your business changes. You're not on your own.",
   },
 ];
 
@@ -56,7 +56,7 @@ export function HowItWorksSection() {
           <h2 className="text-white">How It Works</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
-            A proven five-step process to take you from bottleneck to fully automated.
+            From the first call to a live, running system — here's what working with us actually looks like.
           </p>
         </motion.div>
 
@@ -129,9 +129,9 @@ export function HowItWorksSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-white/60 text-sm">Ready to start your automation journey?</p>
+          <p className="text-white/60 text-sm">Most clients see their first automation live within two weeks of the initial call.</p>
           <Button size="lg" onClick={handleScroll} className="gap-2">
-            Start in 5 Minutes <ArrowRight size={16} />
+            Book Your Free Call <ArrowRight size={16} />
           </Button>
         </motion.div>
       </div>

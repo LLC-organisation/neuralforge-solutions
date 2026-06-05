@@ -41,7 +41,7 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
         >
           <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-          <span className="text-blue-300 text-sm font-medium">AI · Automation · Cybersecurity</span>
+          <span className="text-blue-300 text-sm font-medium">Automation · AI · Cybersecurity</span>
         </motion.div>
 
         {/* Headline */}
@@ -51,9 +51,9 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
         >
-          <span className="text-white">Intelligent Technology</span>{" "}
+          <span className="text-white">We Build the Systems</span>{" "}
           <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-            Built for Growth.
+            That Free Your Team.
           </span>
         </motion.h1>
 
@@ -64,8 +64,8 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
         >
-          Amek Technology Solutions delivers AI-powered automation, cybersecurity,
-          and custom software that eliminates manual work and scales with your business.
+          Amek Technology builds automation tools, AI systems, and security solutions
+          for businesses that want to do more without adding more staff.
         </motion.p>
 
         {/* Buttons */}

@@ -85,9 +85,9 @@ export async function ContactSection() {
       <div className="container">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-white mb-4">Get In Touch</h2>
+            <h2 className="text-white mb-4">Let's Talk</h2>
             <p className="text-white/70 text-lg">
-              Ready to stop doing things manually? Let's talk about your automation needs.
+              Tell us what's taking up too much of your team's time. We'll figure out together whether we can help.
             </p>
           </div>
 
@@ -105,9 +105,9 @@ export async function ContactSection() {
           )}
 
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-8">
-            <h3 className="text-white text-2xl font-semibold mb-2">Request a Consultation</h3>
+            <h3 className="text-white text-2xl font-semibold mb-2">Book a Free Consultation</h3>
             <p className="text-white/60 mb-8">
-              Tell us about your business and we'll schedule a free 30-minute call.
+              Fill in your details and we'll get back to you within one business day to schedule a call.
             </p>
             <ConsultationForm />
           </div>

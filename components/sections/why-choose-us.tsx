@@ -45,33 +45,33 @@ function ReasonCard({ icon: Icon, title, description, index }: ReasonCardProps) 
 const reasons: Omit<ReasonCardProps, "index">[] = [
   {
     icon: DollarSign,
-    title: "Reduce Costs",
-    description: "Cut operational costs by eliminating manual labor from repetitive tasks",
+    title: "Lower Operational Costs",
+    description: "Replace manual, time-intensive tasks with automated systems — keep your output high without expanding your team.",
   },
   {
     icon: TrendingUp,
-    title: "Increase Efficiency",
-    description: "Get more done in less time with automation that never takes a day off",
+    title: "Your Team Works on Better Things",
+    description: "When routine work is handled automatically, your people can focus on the work they're actually good at.",
   },
   {
     icon: CheckCircle,
-    title: "Minimize Errors",
-    description: "Remove human error from your most critical business processes",
+    title: "Fewer Costly Mistakes",
+    description: "Automated processes are consistent. Manual ones aren't. We help move your critical work into systems that don't have bad days.",
   },
   {
     icon: Clock,
-    title: "Faster Operations",
-    description: "Processes that took hours now complete in minutes",
+    title: "Faster Turnaround",
+    description: "Tasks that used to take hours run in minutes — without anyone sitting in front of a screen watching them.",
   },
   {
     icon: Settings,
-    title: "Custom Solutions",
-    description: "Every automation is built specifically for your business, not a generic template",
+    title: "Built Around Your Business",
+    description: "We don't sell templates. Every system we build is designed around how your business actually works.",
   },
   {
     icon: HeartHandshake,
-    title: "Continuous Support",
-    description: "We stay with you after launch to optimize and expand your automation",
+    title: "We Stay After the Work Is Done",
+    description: "We don't disappear after launch. If something needs tuning or your process changes, we're a phone call away.",
   },
 ];
 
@@ -90,10 +90,10 @@ export function WhyChooseUsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-white">Why Businesses Choose Us</h2>
+          <h2 className="text-white">Why Clients Work With Us</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
-            Real, measurable impact for businesses that are ready to grow without growing their headcount.
+            We're not a software vendor. We're a team you can call when something breaks, needs improving, or isn't quite right.
           </p>
         </motion.div>
 
@@ -112,8 +112,8 @@ export function WhyChooseUsSection() {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <h3 className="text-white font-semibold text-xl mb-1">Ready to see the difference?</h3>
-            <p className="text-white/60 text-sm">Get a free consultation and learn exactly how much time and money automation can save your business.</p>
+            <h3 className="text-white font-semibold text-xl mb-1">Curious what this would look like for your business?</h3>
+            <p className="text-white/60 text-sm">We'll walk you through a free 30-minute consultation — no pressure, no sales script.</p>
           </div>
           <Button size="lg" onClick={handleScroll} className="shrink-0 gap-2">
             Get a Free Consultation <ArrowRight size={16} />

@@ -6,7 +6,6 @@ import {
   ShieldCheck,
   Users,
   Handshake,
-  Leaf,
   Lock,
   ArrowRight,
   type LucideIcon,
@@ -41,11 +40,11 @@ function ValueCard({ icon: Icon, title, index }: ValueCardProps) {
 }
 
 const values: Omit<ValueCardProps, "index">[] = [
-  { icon: Lightbulb, title: "Innovation" },
+  { icon: Lightbulb, title: "Practical Innovation" },
   { icon: ShieldCheck, title: "Integrity" },
-  { icon: Users, title: "Customer Focus" },
+  { icon: Users, title: "Client First" },
   { icon: Handshake, title: "Collaboration" },
-  { icon: Leaf, title: "Sustainability" },
+  { icon: ShieldCheck, title: "Transparency" },
   { icon: Lock, title: "Security First" },
 ];
 
@@ -86,19 +85,19 @@ const team: Omit<TeamCardProps, "index">[] = [
     name: "Victor Kamiri",
     role: "Co-Founder · UI/UX Engineer & Marketing Lead",
     initials: "VK",
-    bio: "Victor crafts the user experiences behind our products — intuitive interfaces that make powerful technology feel effortless. He leads design strategy and drives growth through targeted marketing.",
+    bio: "Victor leads design and marketing at Amek. He builds the interfaces our clients interact with every day and makes sure complex technology feels straightforward to use.",
   },
   {
     name: "Lee Haney",
     role: "Co-Founder · Tech & AI Lead",
     initials: "LH",
-    bio: "Lee architects the core of our automation platform, building robust AI systems and scalable integrations. He leads technical strategy and ensures every solution is engineered for performance and reliability.",
+    bio: "Lee is the one who figures out how to build it. He leads our engineering work, designs the AI systems we deploy, and makes sure everything we ship is reliable and well-built.",
   },
   {
     name: "George Akai",
     role: "Co-Founder · Cybersecurity Lead & AI Architect",
     initials: "GA",
-    bio: "George ensures every system we build is secure by design. He leads our cybersecurity practice and architects AI solutions that protect client data while unlocking the full power of intelligent automation.",
+    bio: "George keeps our systems — and our clients' systems — secure. He leads cybersecurity across all our projects and designs the architecture that handles sensitive data responsibly.",
   },
 ];
 
@@ -124,9 +123,10 @@ export function AboutSection() {
               <h3 className="text-blue-400 font-semibold text-lg uppercase tracking-wide">Our Mission</h3>
             </div>
             <p className="text-white/80 leading-relaxed">
-              To empower organizations by removing the burden of repetitive work,
-              freeing their people to focus on what only humans can do — build
-              relationships, solve complex problems, and drive growth.
+              Our work is simple: take the tasks that eat up your team's time and
+              build systems to handle them automatically. The goal isn't just
+              efficiency — it's giving people space to do the kind of work they
+              actually want to do.
             </p>
           </motion.div>
 
@@ -142,9 +142,9 @@ export function AboutSection() {
               <h3 className="text-blue-400 font-semibold text-lg uppercase tracking-wide">Our Vision</h3>
             </div>
             <p className="text-white/80 leading-relaxed">
-              To become the most trusted technology partner for growing businesses
-              in East Africa and beyond — delivering AI, automation, and security
-              that actually works.
+              To be the go-to technology team for growing businesses in East Africa
+              and beyond. Not a vendor you call once, but a partner who understands
+              your operations and helps you stay ahead of what's coming.
             </p>
           </motion.div>
         </div>
@@ -200,17 +200,17 @@ export function AboutSection() {
             <h3 className="text-blue-400 font-semibold text-lg uppercase tracking-wide">Our Story</h3>
           </div>
           <p className="text-white/80 leading-relaxed text-base max-w-3xl">
-            Amek Technology Solutions was founded by three technologists who saw businesses
-            drowning in repetitive work and security gaps that software could solve.
-            We built the company to bridge the gap between enterprise-grade technology
-            and the businesses that need it most — combining AI, automation, and
-            cybersecurity under one roof.
+            Amek came out of a straightforward observation: most businesses spend too much time on work
+            that technology could handle. We saw teams doing the same manual tasks day after day —
+            data entry, chasing approvals, pulling reports — and knew there was a better way.
+            We built Amek to offer practical, well-engineered solutions: automation that actually runs,
+            security that holds up, and a team that stays accountable long after the project is delivered.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
             <Button size="lg" onClick={handleScroll} className="gap-2">
               Work With Our Team <ArrowRight size={16} />
             </Button>
-            <span className="text-white/40 text-sm">No commitment. Free first consultation.</span>
+            <span className="text-white/40 text-sm">Free first call. No sales pressure.</span>
           </div>
         </motion.div>
       </div>

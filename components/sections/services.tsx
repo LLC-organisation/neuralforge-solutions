@@ -69,38 +69,38 @@ const services: Omit<ServiceCardProps, "index">[] = [
   {
     icon: FileText,
     title: "Tax Automation",
-    description: "Automate tax calculations, filings, and compliance tracking so your team never misses a deadline.",
-    benefits: ["Eliminate manual tax prep", "Real-time compliance alerts", "Reduce filing errors by 90%"],
+    description: "We build systems that handle tax calculations, filing, and compliance tracking automatically — so your team isn't scrambling when deadlines hit.",
+    benefits: ["No more manual data entry at year-end", "Automatic compliance checks", "Fewer costly filing mistakes"],
   },
   {
     icon: ScanLine,
     title: "Document Processing",
-    description: "Extract, classify, and route documents without manual handling.",
-    benefits: ["Process invoices in seconds", "Zero manual data entry", "Works with PDFs, emails, and scans"],
+    description: "Invoices, contracts, applications — we build pipelines that extract the right data and route it where it needs to go, without anyone having to touch it.",
+    benefits: ["Process documents in seconds, not hours", "Handles PDFs, emails, and scanned forms", "No manual data entry"],
   },
   {
     icon: Workflow,
     title: "Workflow Automation",
-    description: "Replace repetitive multi-step processes with automated pipelines.",
-    benefits: ["Save 20+ hours per week", "Consistent, error-free execution", "Runs 24/7 without supervision"],
+    description: "We map your most time-consuming processes and replace them with automated pipelines that run quietly in the background.",
+    benefits: ["Reclaim hours every week", "Consistent execution every time", "Runs even when your team is offline"],
   },
   {
     icon: Bot,
     title: "AI Assistants",
-    description: "Deploy intelligent assistants that handle customer queries and internal tasks.",
-    benefits: ["Answer questions instantly", "Available around the clock", "Learns your business over time"],
+    description: "We build AI assistants trained on your business — your products, your processes, your tone — so your team isn't answering the same questions all day.",
+    benefits: ["Instant responses to common questions", "Handles intake forms and basic support", "Gets smarter as your business grows"],
   },
   {
     icon: Plug,
     title: "System Integrations",
-    description: "Connect your existing tools so data flows automatically between them.",
-    benefits: ["No more copy-pasting data", "Syncs in real time", "Works with 500+ apps"],
+    description: "Your tools should talk to each other. We connect your CRM, accounting software, inbox, and other platforms so nothing slips through the cracks.",
+    benefits: ["No more copying data between platforms", "Syncs in real time", "Works with the tools you already use"],
   },
   {
     icon: BarChart3,
     title: "Analytics & Reporting",
-    description: "Get real-time visibility into your operations without manual reporting.",
-    benefits: ["Live dashboards, no spreadsheets", "Spot bottlenecks instantly", "Data-driven decisions made easy"],
+    description: "Stop pulling reports manually. We build dashboards that update automatically so you always know what's happening in your business.",
+    benefits: ["Live data, no spreadsheet maintenance", "Spot problems before they get expensive", "Reports your whole team can actually read"],
   },
 ];
 
@@ -122,7 +122,7 @@ export function ServicesSection() {
           <h2 className="text-white">Our Services</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
-            End-to-end technology services designed to eliminate friction and accelerate your growth.
+            We build practical technology that solves specific problems — from automating repetitive tasks to securing your systems and connecting your tools.
           </p>
         </motion.div>
 
@@ -140,7 +140,7 @@ export function ServicesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-white/60 text-sm">Not sure which service fits your needs?</p>
+          <p className="text-white/60 text-sm">Not sure where to start? Let's talk through your specific situation.</p>
           <Button size="lg" onClick={handleScroll} className="gap-2">
             Book a Free Strategy Session <ArrowRight size={16} />
           </Button>
