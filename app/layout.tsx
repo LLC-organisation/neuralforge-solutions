@@ -9,24 +9,27 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://amek.tech";
 
 export const metadata = {
   title: {
-    default: "Amek Technology Solutions | AI & Automation Experts",
-    template: "%s | Amek Technology Solutions",
+    default: "Rychlo",
+    template: "%s | Rychlo",
+  },
+  icons: {
+    icon: "/logo.jpeg",
   },
   description:
-    "Amek Technology Solutions delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
+    "Rychlo Technology Solutions delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "Amek Technology Solutions | AI & Automation Experts",
+    title: "Rychlo Technology Solutions | AI & Automation Experts",
     description:
       "AI automation, cybersecurity, and custom software for growing businesses.",
     url: siteUrl,
-    siteName: "Amek Technology Solutions",
+    siteName: "Rychlo Technology Solutions",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Amek Technology Solutions | AI & Automation Experts",
+    title: "Rychlo Technology Solutions | AI & Automation Experts",
     description: "Build. Automate. Scale.",
   },
   keywords: [
@@ -37,7 +40,7 @@ export const metadata = {
     "Digital Transformation",
     "Workflow Automation",
     "Custom Software",
-    "Amek Technology",
+    "Rychlo Technology",
   ],
   robots: {
     index: true,

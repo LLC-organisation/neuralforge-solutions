@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const footerLinks = [
   { label: "Services", href: "#services" },
   { label: "How It Works", href: "#how-it-works" },
@@ -18,10 +20,14 @@ export function Footer() {
       <div className="container py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center md:items-start gap-1">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-md bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-              <span className="text-white font-bold text-xs">A</span>
-            </div>
-            <span className="text-white font-semibold">Amek Technology Solutions</span>
+            <Image
+              src="/logo.jpeg"
+              alt="Rychlo Technology Solutions"
+              width={44}
+              height={44}
+              className="rounded-md object-cover"
+            />
+            <span className="text-white font-semibold">Rychlo Technology Solutions</span>
           </div>
           <span className="text-blue-400 text-xs font-medium ml-9">Build. Automate. Scale.</span>
         </div>
@@ -39,7 +45,7 @@ export function Footer() {
         </nav>
 
         <p className="text-white/40 text-xs">
-          &copy; 2025 Amek Technology Solutions. All rights reserved.
+          &copy; 2025 Rychlo Technology Solutions. All rights reserved.
         </p>
       </div>
     </footer>

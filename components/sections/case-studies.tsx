@@ -1,19 +1,13 @@
 import { Badge } from "@/components/ui/badge";
-import prisma from "@/lib/prisma";
-
-async function getPublishedCaseStudies() {
-  try {
-    return await prisma.caseStudy.findMany({
-      where: { published: true },
-      orderBy: { createdAt: "desc" },
-    });
-  } catch {
-    return [];
-  }
-}
+import { caseStudies as caseStudyQueries } from "@/lib/queries/case-studies";
 
 export async function CaseStudiesSection() {
-  const caseStudies = await getPublishedCaseStudies();
+  let caseStudies: Awaited<ReturnType<typeof caseStudyQueries.getPublished>>;
+  try {
+    caseStudies = await caseStudyQueries.getPublished();
+  } catch {
+    caseStudies = [];
+  }
 
   if (caseStudies.length === 0) return null;
 

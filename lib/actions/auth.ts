@@ -3,23 +3,19 @@
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
 import { redirect } from "next/navigation";
-
-const SESSION_COOKIE = "admin_session";
-const secret = new TextEncoder().encode(
-  process.env.SESSION_SECRET ?? "fallback-dev-secret-do-not-use-in-prod"
-);
+import { SESSION_COOKIE, SESSION_ALGORITHM, getSessionSecret } from "@/lib/auth/session";
 
 async function createSessionToken(): Promise<string> {
   return new SignJWT({ admin: true })
-    .setProtectedHeader({ alg: "HS256" })
+    .setProtectedHeader({ alg: SESSION_ALGORITHM })
     .setIssuedAt()
     .setExpirationTime("8h")
-    .sign(secret);
+    .sign(getSessionSecret());
 }
 
 export async function verifySessionToken(token: string): Promise<boolean> {
   try {
-    await jwtVerify(token, secret);
+    await jwtVerify(token, getSessionSecret());
     return true;
   } catch {
     return false;
@@ -36,7 +32,7 @@ export async function login(password: string): Promise<{ error?: string }> {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
-    maxAge: 60 * 60 * 8, // 8 hours
+    maxAge: 60 * 60 * 8,
     path: "/",
   });
   redirect("/admin");
@@ -48,6 +44,9 @@ export async function logout(): Promise<void> {
   redirect("/admin/login");
 }
 
-export async function getSessionCookieName(): Promise<string> {
-  return SESSION_COOKIE;
+export async function getAdminSession(): Promise<boolean> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(SESSION_COOKIE)?.value;
+  if (!token) return false;
+  return verifySessionToken(token);
 }

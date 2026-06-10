@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import { caseStudies as caseStudyQueries } from "@/lib/queries/case-studies";
 import { notFound } from "next/navigation";
 import { updateCaseStudy } from "@/lib/actions/case-studies";
 import { CaseStudyForm } from "@/components/forms/case-study-form";
@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default async function EditCaseStudyPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const study = await prisma.caseStudy.findUnique({ where: { id } });
+  const study = await caseStudyQueries.getById(id);
   if (!study) notFound();
 
   const action = updateCaseStudy.bind(null, id);

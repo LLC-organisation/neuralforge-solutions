@@ -1,11 +1,8 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
 import { Loader2, CheckCircle } from "lucide-react";
-import { automationSchema, type AutomationFormData } from "@/lib/schemas/automation";
 import { submitAutomationRequest } from "@/lib/actions/automation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,28 +10,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 export function AutomationRequestForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [state, formAction, isPending] = useActionState(
+    submitAutomationRequest,
+    {}
+  );
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<AutomationFormData>({
-    resolver: zodResolver(automationSchema),
-  });
+  useEffect(() => {
+    if (state.error) toast.error(state.error);
+  }, [state.error]);
 
-  const onSubmit = async (data: AutomationFormData) => {
-    const result = await submitAutomationRequest(data);
-    if (result.success) {
-      setSubmitted(true);
-    } else if ("error" in result && result.error) {
-      toast.error(result.error);
-    } else {
-      toast.error("Please check the form for errors and try again.");
-    }
-  };
-
-  if (submitted) {
+  if (state.success) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
         <CheckCircle className="text-blue-500 mb-4" size={56} />
@@ -46,83 +31,112 @@ export function AutomationRequestForm() {
     );
   }
 
-  const field = (
-    id: keyof AutomationFormData,
-    label: string,
-    placeholder: string,
-    type: "input" | "textarea" = "input",
-    inputType = "text"
-  ) => (
-    <div className="space-y-2">
-      <Label htmlFor={id}>{label} *</Label>
-      {type === "textarea" ? (
-        <Textarea
-          id={id}
-          rows={4}
-          placeholder={placeholder}
-          aria-describedby={errors[id] ? `${id}-error` : undefined}
-          aria-invalid={!!errors[id]}
-          {...register(id)}
-        />
-      ) : (
-        <Input
-          id={id}
-          type={inputType}
-          placeholder={placeholder}
-          aria-describedby={errors[id] ? `${id}-error` : undefined}
-          aria-invalid={!!errors[id]}
-          {...register(id)}
-        />
-      )}
-      {errors[id] && (
-        <p id={`${id}-error`} role="alert" className="text-sm text-red-400">
-          {errors[id]?.message}
-        </p>
-      )}
-    </div>
-  );
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
+    <form action={formAction} noValidate className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {field("fullName", "Full Name", "Jane Smith")}
-        {field("companyName", "Company Name", "Acme Corp")}
-        {field("email", "Email Address", "jane@acme.com", "input", "email")}
-        {field("phone", "Phone Number", "+1 555 0100", "input", "tel")}
-        {field("industry", "Industry", "e.g. Healthcare, Logistics, Finance")}
-        {field("estimatedMonthlyVolume", "Estimated Monthly Volume", "e.g. ~500 invoices/month")}
+        <div className="space-y-2">
+          <Label htmlFor="fullName">Full Name *</Label>
+          <Input id="fullName" name="fullName" placeholder="Jane Smith" />
+          {state.fieldErrors?.fullName?.[0] && (
+            <p role="alert" className="text-sm text-red-400">{state.fieldErrors.fullName[0]}</p>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="companyName">Company Name *</Label>
+          <Input id="companyName" name="companyName" placeholder="Acme Corp" />
+          {state.fieldErrors?.companyName?.[0] && (
+            <p role="alert" className="text-sm text-red-400">{state.fieldErrors.companyName[0]}</p>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="email">Email Address *</Label>
+          <Input id="email" name="email" type="email" placeholder="jane@acme.com" />
+          {state.fieldErrors?.email?.[0] && (
+            <p role="alert" className="text-sm text-red-400">{state.fieldErrors.email[0]}</p>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="phone">Phone Number *</Label>
+          <Input id="phone" name="phone" type="tel" placeholder="+1 555 0100" />
+          {state.fieldErrors?.phone?.[0] && (
+            <p role="alert" className="text-sm text-red-400">{state.fieldErrors.phone[0]}</p>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="industry">Industry *</Label>
+          <Input id="industry" name="industry" placeholder="e.g. Healthcare, Logistics, Finance" />
+          {state.fieldErrors?.industry?.[0] && (
+            <p role="alert" className="text-sm text-red-400">{state.fieldErrors.industry[0]}</p>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="estimatedMonthlyVolume">Estimated Monthly Volume *</Label>
+          <Input id="estimatedMonthlyVolume" name="estimatedMonthlyVolume" placeholder="e.g. ~500 invoices/month" />
+          {state.fieldErrors?.estimatedMonthlyVolume?.[0] && (
+            <p role="alert" className="text-sm text-red-400">{state.fieldErrors.estimatedMonthlyVolume[0]}</p>
+          )}
+        </div>
       </div>
 
-      {field(
-        "existingSystems",
-        "Existing Systems",
-        "List the software and tools your team currently uses (e.g. QuickBooks, Slack, Salesforce)...",
-        "textarea"
-      )}
+      <div className="space-y-2">
+        <Label htmlFor="existingSystems">Existing Systems *</Label>
+        <Textarea
+          id="existingSystems"
+          name="existingSystems"
+          rows={4}
+          placeholder="List the software and tools your team currently uses (e.g. QuickBooks, Slack, Salesforce)..."
+        />
+        {state.fieldErrors?.existingSystems?.[0] && (
+          <p role="alert" className="text-sm text-red-400">{state.fieldErrors.existingSystems[0]}</p>
+        )}
+      </div>
 
-      {field(
-        "currentProcess",
-        "Current Process",
-        "Walk us through the manual steps your team does today, step by step...",
-        "textarea"
-      )}
+      <div className="space-y-2">
+        <Label htmlFor="currentProcess">Current Process *</Label>
+        <Textarea
+          id="currentProcess"
+          name="currentProcess"
+          rows={4}
+          placeholder="Walk us through the manual steps your team does today, step by step..."
+        />
+        {state.fieldErrors?.currentProcess?.[0] && (
+          <p role="alert" className="text-sm text-red-400">{state.fieldErrors.currentProcess[0]}</p>
+        )}
+      </div>
 
-      {field(
-        "painPoints",
-        "Pain Points",
-        "What is slow, expensive, error-prone, or frustrating about the current process?",
-        "textarea"
-      )}
+      <div className="space-y-2">
+        <Label htmlFor="painPoints">Pain Points *</Label>
+        <Textarea
+          id="painPoints"
+          name="painPoints"
+          rows={4}
+          placeholder="What is slow, expensive, error-prone, or frustrating about the current process?"
+        />
+        {state.fieldErrors?.painPoints?.[0] && (
+          <p role="alert" className="text-sm text-red-400">{state.fieldErrors.painPoints[0]}</p>
+        )}
+      </div>
 
-      {field(
-        "desiredAutomation",
-        "Desired Automation",
-        "Describe what you want to happen automatically. Be as specific as possible...",
-        "textarea"
-      )}
+      <div className="space-y-2">
+        <Label htmlFor="desiredAutomation">Desired Automation *</Label>
+        <Textarea
+          id="desiredAutomation"
+          name="desiredAutomation"
+          rows={4}
+          placeholder="Describe what you want to happen automatically. Be as specific as possible..."
+        />
+        {state.fieldErrors?.desiredAutomation?.[0] && (
+          <p role="alert" className="text-sm text-red-400">{state.fieldErrors.desiredAutomation[0]}</p>
+        )}
+      </div>
 
-      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? (
+      <Button type="submit" size="lg" className="w-full" disabled={isPending}>
+        {isPending ? (
           <>
             <Loader2 className="animate-spin" size={18} />
             Submitting...
@@ -134,4 +148,3 @@ export function AutomationRequestForm() {
     </form>
   );
 }
-

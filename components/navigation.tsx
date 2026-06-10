@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -24,20 +25,24 @@ export function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
-      <div className="container flex items-center justify-between h-16">
+      <div className="container flex items-center justify-between h-20">
         {/* Logo */}
-        <div className="flex flex-col">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-md bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
-            </div>
+        <div className="flex items-center gap-3">
+          <Image
+            src="/logo.jpeg"
+            alt="Rychlo"
+            width={80}
+            height={80}
+            className="rounded-md object-contain"
+          />
+          <div className="flex flex-col">
             <span className="text-white font-semibold text-lg leading-tight">
-              Amek Technology
+              Rychlo
+            </span>
+            <span className="text-blue-400 text-xs font-medium">
+              Build. Automate. Scale.
             </span>
           </div>
-          <span className="text-blue-400 text-xs font-medium ml-10 -mt-0.5">
-            Build. Automate. Scale.
-          </span>
         </div>
 
         {/* Desktop nav */}

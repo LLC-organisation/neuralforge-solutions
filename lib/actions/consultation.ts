@@ -2,26 +2,23 @@
 
 import prisma from "@/lib/prisma";
 import { sendConsultationNotification } from "@/lib/email";
-import { consultationSchema, type ConsultationFormData } from "@/lib/schemas/consultation";
-
-type SuccessResult = { success: true };
-type ErrorResult = {
-  success: false;
-  fieldErrors?: Partial<Record<keyof ConsultationFormData, string[]>>;
-  error?: string;
-};
+import { consultationSchema } from "@/lib/schemas/consultation";
+import type { FormState } from "@/lib/schemas/form-state";
 
 export async function submitConsultationRequest(
-  data: unknown
-): Promise<SuccessResult | ErrorResult> {
-  const parsed = consultationSchema.safeParse(data);
+  _prevState: FormState,
+  formData: FormData
+): Promise<FormState> {
+  const parsed = consultationSchema.safeParse({
+    fullName: formData.get("fullName"),
+    companyName: formData.get("companyName"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+  });
 
   if (!parsed.success) {
     return {
-      success: false,
-      fieldErrors: parsed.error.flatten().fieldErrors as Partial<
-        Record<keyof ConsultationFormData, string[]>
-      >,
+      fieldErrors: parsed.error.flatten().fieldErrors as Record<string, string[]>,
     };
   }
 
@@ -30,6 +27,6 @@ export async function submitConsultationRequest(
     await sendConsultationNotification(parsed.data);
     return { success: true };
   } catch {
-    return { success: false, error: "Something went wrong. Please try again." };
+    return { error: "Something went wrong. Please try again." };
   }
 }

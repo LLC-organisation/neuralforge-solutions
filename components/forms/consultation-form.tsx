@@ -1,39 +1,24 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
 import { Loader2, CheckCircle } from "lucide-react";
-import { consultationSchema, type ConsultationFormData } from "@/lib/schemas/consultation";
 import { submitConsultationRequest } from "@/lib/actions/consultation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export function ConsultationForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [state, formAction, isPending] = useActionState(
+    submitConsultationRequest,
+    {}
+  );
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<ConsultationFormData>({
-    resolver: zodResolver(consultationSchema),
-  });
+  useEffect(() => {
+    if (state.error) toast.error(state.error);
+  }, [state.error]);
 
-  const onSubmit = async (data: ConsultationFormData) => {
-    const result = await submitConsultationRequest(data);
-    if (result.success) {
-      setSubmitted(true);
-    } else if ("error" in result && result.error) {
-      toast.error(result.error);
-    } else {
-      toast.error("Please check the form for errors and try again.");
-    }
-  };
-
-  if (submitted) {
+  if (state.success) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
         <CheckCircle className="text-blue-400 mb-4" size={56} />
@@ -46,77 +31,51 @@ export function ConsultationForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
+    <form action={formAction} noValidate className="space-y-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label htmlFor="fullName">Full Name *</Label>
-          <Input
-            id="fullName"
-            placeholder="Jane Smith"
-            aria-describedby={errors.fullName ? "fullName-error" : undefined}
-            aria-invalid={!!errors.fullName}
-            {...register("fullName")}
-          />
-          {errors.fullName && (
-            <p id="fullName-error" role="alert" className="text-sm text-red-400">
-              {errors.fullName.message}
+          <Input id="fullName" name="fullName" placeholder="Jane Smith" />
+          {state.fieldErrors?.fullName?.[0] && (
+            <p role="alert" className="text-sm text-red-400">
+              {state.fieldErrors.fullName[0]}
             </p>
           )}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="companyName">Company Name *</Label>
-          <Input
-            id="companyName"
-            placeholder="Acme Corp"
-            aria-describedby={errors.companyName ? "companyName-error" : undefined}
-            aria-invalid={!!errors.companyName}
-            {...register("companyName")}
-          />
-          {errors.companyName && (
-            <p id="companyName-error" role="alert" className="text-sm text-red-400">
-              {errors.companyName.message}
+          <Input id="companyName" name="companyName" placeholder="Acme Corp" />
+          {state.fieldErrors?.companyName?.[0] && (
+            <p role="alert" className="text-sm text-red-400">
+              {state.fieldErrors.companyName[0]}
             </p>
           )}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="email">Email Address *</Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="jane@acme.com"
-            aria-describedby={errors.email ? "email-error" : undefined}
-            aria-invalid={!!errors.email}
-            {...register("email")}
-          />
-          {errors.email && (
-            <p id="email-error" role="alert" className="text-sm text-red-400">
-              {errors.email.message}
+          <Input id="email" name="email" type="email" placeholder="jane@acme.com" />
+          {state.fieldErrors?.email?.[0] && (
+            <p role="alert" className="text-sm text-red-400">
+              {state.fieldErrors.email[0]}
             </p>
           )}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="phone">Phone Number *</Label>
-          <Input
-            id="phone"
-            type="tel"
-            placeholder="+254 700 000 000"
-            aria-describedby={errors.phone ? "phone-error" : undefined}
-            aria-invalid={!!errors.phone}
-            {...register("phone")}
-          />
-          {errors.phone && (
-            <p id="phone-error" role="alert" className="text-sm text-red-400">
-              {errors.phone.message}
+          <Input id="phone" name="phone" type="tel" placeholder="+254 700 000 000" />
+          {state.fieldErrors?.phone?.[0] && (
+            <p role="alert" className="text-sm text-red-400">
+              {state.fieldErrors.phone[0]}
             </p>
           )}
         </div>
       </div>
 
-      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? (
+      <Button type="submit" size="lg" className="w-full" disabled={isPending}>
+        {isPending ? (
           <>
             <Loader2 className="animate-spin" size={18} />
             Sending...

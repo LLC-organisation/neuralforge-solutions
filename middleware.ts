@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
-
-const SESSION_COOKIE = "admin_session";
-const secret = new TextEncoder().encode(
-  process.env.SESSION_SECRET ?? "fallback-dev-secret-do-not-use-in-prod"
-);
+import { SESSION_COOKIE, getSessionSecret } from "@/lib/auth/session";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -19,7 +15,7 @@ export async function middleware(request: NextRequest) {
     }
 
     try {
-      await jwtVerify(token, secret);
+      await jwtVerify(token, getSessionSecret());
       return NextResponse.next();
     } catch {
       const response = NextResponse.redirect(new URL("/admin/login", request.url));

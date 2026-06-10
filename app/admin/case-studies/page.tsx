@@ -1,4 +1,4 @@
-﻿import prisma from "@/lib/prisma";
+﻿import { caseStudies as caseStudyQueries } from "@/lib/queries/case-studies";
 import Link from "next/link";
 import { Plus, Pencil } from "lucide-react";
 import { toggleCaseStudyPublished } from "@/lib/actions/case-studies";
@@ -6,9 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { DeleteCaseStudyButton } from "@/components/admin/delete-case-study-button";
 
 export default async function CaseStudiesAdminPage() {
-  const caseStudies = await prisma.caseStudy.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  const caseStudies = await caseStudyQueries.getAll();
 
   return (
     <div className="p-8">

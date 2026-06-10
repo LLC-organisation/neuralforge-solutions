@@ -85,7 +85,7 @@ const team: Omit<TeamCardProps, "index">[] = [
     name: "Victor Kamiri",
     role: "Co-Founder · Mobile & Frontend UI/UX Engineer & Marketing Lead",
     initials: "VK",
-    bio: "Victor leads design and marketing at Amek. He builds the interfaces our clients interact with every day and makes sure complex technology feels straightforward to use.",
+    bio: "Victor leads design and marketing at Rychlo. He builds the interfaces our clients interact with every day and makes sure complex technology feels straightforward to use.",
   },
   {
     name: "Lee Haney",
@@ -200,10 +200,10 @@ export function AboutSection() {
             <h3 className="text-blue-400 font-semibold text-lg uppercase tracking-wide">Our Story</h3>
           </div>
           <p className="text-white/80 leading-relaxed text-base max-w-3xl">
-            Amek came out of a straightforward observation: most businesses spend too much time on work
+            Rychlo came out of a straightforward observation: most businesses spend too much time on work
             that technology could handle. We saw teams doing the same manual tasks day after day:
             data entry, chasing approvals, pulling reports. We knew there was a better way.
-            We built Amek to offer practical, well-engineered solutions: automation that actually runs,
+            We built Rychlo to offer practical, well-engineered solutions: automation that actually runs,
             security that holds up, and a team that stays accountable long after the project is delivered.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">

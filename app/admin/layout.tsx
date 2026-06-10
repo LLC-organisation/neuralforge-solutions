@@ -1,5 +1,7 @@
 ﻿import Link from "next/link";
-import { logout } from "@/lib/actions/auth";
+import Image from "next/image";
+import { redirect } from "next/navigation";
+import { logout, getAdminSession } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Users, Bot, BookOpen, Settings, LogOut } from "lucide-react";
 
@@ -11,18 +13,24 @@ const navItems = [
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const isAuthenticated = await getAdminSession();
+  if (!isAuthenticated) redirect("/admin/login");
   return (
     <div className="min-h-screen bg-zinc-950 flex">
       {/* Sidebar */}
       <aside className="w-64 bg-zinc-900 border-r border-zinc-800 flex flex-col">
         <div className="p-6 border-b border-zinc-800">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-md flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
-            </div>
+            <Image
+              src="/logo.jpeg"
+              alt="Rychlo Technology Solutions"
+              width={48}
+              height={48}
+              className="rounded-md object-cover"
+            />
             <div>
-              <p className="text-white font-semibold text-sm">Amek Technology</p>
+              <p className="text-white font-semibold text-sm">Rychlo Technology</p>
               <p className="text-zinc-400 text-xs">Admin Panel</p>
             </div>
           </div>

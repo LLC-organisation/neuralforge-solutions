@@ -2,26 +2,29 @@
 
 import prisma from "@/lib/prisma";
 import { sendAutomationRequestNotification } from "@/lib/email";
-import { automationSchema, type AutomationFormData } from "@/lib/schemas/automation";
-
-type SuccessResult = { success: true };
-type ErrorResult = {
-  success: false;
-  fieldErrors?: Partial<Record<keyof AutomationFormData, string[]>>;
-  error?: string;
-};
+import { automationSchema } from "@/lib/schemas/automation";
+import type { FormState } from "@/lib/schemas/form-state";
 
 export async function submitAutomationRequest(
-  data: unknown
-): Promise<SuccessResult | ErrorResult> {
-  const parsed = automationSchema.safeParse(data);
+  _prevState: FormState,
+  formData: FormData
+): Promise<FormState> {
+  const parsed = automationSchema.safeParse({
+    fullName: formData.get("fullName"),
+    companyName: formData.get("companyName"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    industry: formData.get("industry"),
+    existingSystems: formData.get("existingSystems"),
+    currentProcess: formData.get("currentProcess"),
+    painPoints: formData.get("painPoints"),
+    desiredAutomation: formData.get("desiredAutomation"),
+    estimatedMonthlyVolume: formData.get("estimatedMonthlyVolume"),
+  });
 
   if (!parsed.success) {
     return {
-      success: false,
-      fieldErrors: parsed.error.flatten().fieldErrors as Partial<
-        Record<keyof AutomationFormData, string[]>
-      >,
+      fieldErrors: parsed.error.flatten().fieldErrors as Record<string, string[]>,
     };
   }
 
@@ -30,6 +33,6 @@ export async function submitAutomationRequest(
     await sendAutomationRequestNotification(parsed.data);
     return { success: true };
   } catch {
-    return { success: false, error: "Something went wrong. Please try again." };
+    return { error: "Something went wrong. Please try again." };
   }
 }

@@ -64,7 +64,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
         >
-          Amek Technology builds automation tools, AI systems, and security solutions
+          Rychlo Technology Solutions builds automation tools, AI systems, and security solutions
           for businesses that want to do more without adding more staff.
         </motion.p>
 
