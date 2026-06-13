@@ -2,6 +2,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
+import { ChatbotWidget } from "@/components/chatbot-widget";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -94,6 +95,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
+        <ChatbotWidget />
         <Toaster theme="dark" position="bottom-right" richColors />
       </body>
     </html>
